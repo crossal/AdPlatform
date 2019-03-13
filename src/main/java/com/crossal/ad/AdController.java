@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,15 +27,22 @@ public class AdController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "ad", method = RequestMethod.GET)
-    public String showAd(Model model) {
-        model.addAttribute("ad", adService.getAd());
-        return "adshow";
-    }
+//    @RequestMapping(value = "ad", method = RequestMethod.GET)
+//    public String showAd(Model model) {
+//        model.addAttribute("ad", adService.getAd());
+//        return "adshow";
+//    }
 
-//    @RequestMapping(value = "/getFile/{path:.+}", method = RequestMethod.GET)
+//    @RequestMapping(value = "/ad/{path:.+}", method = RequestMethod.GET)
 //    public String showAd(@PathVariable String path, Model model) {
 //        model.addAttribute("ad", adService.getAd(path));
 //        return "adshow";
 //    }
+
+    @RequestMapping(value = "/ad", method = RequestMethod.GET)
+    public String showAd(@RequestParam(value = "filePath", required = false) String filePath, Model model) {
+        model.addAttribute("ad", adService.getAd(filePath));
+//        return "adshow";
+        return "index";
+    }
 }

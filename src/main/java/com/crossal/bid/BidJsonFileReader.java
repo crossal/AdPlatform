@@ -28,7 +28,17 @@ public class BidJsonFileReader implements BidReader {
     @Override
     public SeatBidResponse getSeatBid() {
         try {
-            return jsonFileReader.readObj(SeatBidResponse.class);
+            SeatBidResponse seatBidResponse = jsonFileReader.readObj(SeatBidResponse.class);
+            seatBidResponse.getSeatBid().forEach(bidResponse -> {
+                bidResponse.getBids().forEach(bid -> {
+                    String adMarkup = bid.getAdMarkup();
+                    adMarkup = adMarkup.replaceAll("\\\\n", "\n");
+                    adMarkup = adMarkup.replaceAll("\\\\\\\\", "\\\\");
+                    bid.setAdMarkup(adMarkup);
+                });
+            });
+
+            return seatBidResponse;
         } catch (IOException e) {
             logger.error("Exception reading SeatBidResponse from json file: " + e);
             return null;

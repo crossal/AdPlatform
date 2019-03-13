@@ -6,6 +6,8 @@ import com.crossal.bid.BidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+
 @Service
 public class AdServiceImpl implements AdService {
 
@@ -14,7 +16,12 @@ public class AdServiceImpl implements AdService {
 
     @Override
     public Ad getAd() {
-        Bid bid = bidService.getHighestBidder();
+        return getAd(null);
+    }
+
+    @Override
+    public Ad getAd(String filePath) {
+        Bid bid = filePath == null ? bidService.getHighestBidder() : bidService.getHighestBidder(new File(filePath));
 
         if (bid == null) {
             return null;
@@ -25,9 +32,4 @@ public class AdServiceImpl implements AdService {
 
         return ad;
     }
-
-//    @Override
-//    public Ad getAd(String filePath) {
-//        SeatBidResponse seatBidResponse = bidReader.
-//    }
 }

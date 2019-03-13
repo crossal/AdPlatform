@@ -15,15 +15,18 @@ public class BidReaderFactory {
     private String defaultBidFilePath;
 
     public BidReader getBidReader() {
-//        File file = new File(defaultBidFilePath);
-        File file = new File("C://Users/Alan/workspace/AdPlatform/src/main/resources/bid-response.json");
+//        File file = new File("C://Users/Alan/workspace/AdPlatform/src/main/resources/bid-response.json");
+        File file = new File(defaultBidFilePath);
         FileReaderFactory fileReaderFactory = new FileReaderFactory();
         JsonFileReader<SeatBidResponse> jsonFileReader = fileReaderFactory.getJsonObjReader(file);
 
         return new BidJsonFileReader(jsonFileReader);
     }
 
-//    public BidReader getBidReader(File file) {
-//        return new BidJsonFileReader(file);
-//    }
+    public BidReader getBidReader(File file) {
+        FileReaderFactory fileReaderFactory = new FileReaderFactory();
+        JsonFileReader<SeatBidResponse> jsonFileReader = fileReaderFactory.getJsonObjReader(file);
+
+        return new BidJsonFileReader(jsonFileReader);
+    }
 }

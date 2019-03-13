@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collector;
@@ -17,17 +18,20 @@ public class BidServiceImpl implements BidService {
 
     private static final Logger logger = Logger.getLogger(BidServiceImpl.class);
 
-//    @Autowired
-//    private BidReaderFactory bidReaderFactory;
-    private BidReader bidReader;
-
     @Autowired
-    public BidServiceImpl(BidReaderFactory bidReaderFactory) {
-        bidReader = bidReaderFactory.getBidReader();
-    }
+    private BidReaderFactory bidReaderFactory;
+//    private BidReader bidReader;
+//
+//    @Autowired
+//    public BidServiceImpl(BidReaderFactory bidReaderFactory) {
+//        bidReader = bidReaderFactory.getBidReader();
+//    }
+
 
     @Override
-    public Bid getHighestBidder() {
+    public Bid getHighestBidder(File file) {
+        BidReader bidReader = file == null ? bidReaderFactory.getBidReader() : bidReaderFactory.getBidReader(file);
+
         SeatBidResponse seatBidResponse = bidReader.getSeatBid();
 
         if (seatBidResponse == null || seatBidResponse.getSeatBid() == null) {
@@ -41,6 +45,11 @@ public class BidServiceImpl implements BidService {
 //        Bid highestBid = highestBidResponse == null ? null : highestBidResponse.getBid();
 
         return highestBid;
+    }
+
+    @Override
+    public Bid getHighestBidder() {
+        return getHighestBidder(null);
     }
 
 //    @Override

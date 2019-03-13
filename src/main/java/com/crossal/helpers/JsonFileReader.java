@@ -43,8 +43,8 @@ public class JsonFileReader<T> implements Closeable {
 
 
         String content = new String(Files.readAllBytes(file.toPath()));
-        content = content.replaceAll("\\\\n", "\n");
-        content = content.replaceAll("\\\\\\\\", "\\\\");
+//        content = content.replaceAll("\\\\n", "\n");
+//        content = content.replaceAll("\\\\\\\\", "\\\\");
         T obj = new ObjectMapper().readValue(content, clazz);
 
         return obj;

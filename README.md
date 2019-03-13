@@ -1,4 +1,4 @@
 Ad Platform
 ====
-Reads bids from json file and returns ad for highest bidder
+Reads bids from a json file and returns ad for highest bidder
 

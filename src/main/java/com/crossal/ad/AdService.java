@@ -4,5 +4,5 @@ import com.crossal.ad.model.Ad;
 
 public interface AdService {
     Ad getAd();
-//    Ad getAd(String filePath);
+    Ad getAd(String filePath);
 }
