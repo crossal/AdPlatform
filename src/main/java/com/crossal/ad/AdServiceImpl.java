@@ -21,7 +21,7 @@ public class AdServiceImpl implements AdService {
 
     @Override
     public Ad getAd(String filePath) {
-        Bid bid = filePath == null ? bidService.getHighestBidder() : bidService.getHighestBidder(new File(filePath));
+        Bid bid = filePath == null || filePath.isEmpty() ? bidService.getHighestBidder() : bidService.getHighestBidder(new File(filePath));
 
         if (bid == null) {
             return null;
