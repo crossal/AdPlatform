@@ -1,8 +1,8 @@
 package com.crossal.bid;
 
 import com.crossal.bid.model.SeatBidResponse;
-import com.crossal.helpers.FileReaderFactory;
-import com.crossal.helpers.JsonFileReader;
+import com.crossal.helpers.FileObjReader;
+import com.crossal.helpers.FileObjReaderFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -16,16 +16,16 @@ public class BidReaderFactory {
 
     public BidReader getBidReader() {
         File file = new File(defaultBidFilePath);
-        FileReaderFactory fileReaderFactory = new FileReaderFactory();
-        JsonFileReader<SeatBidResponse> jsonFileReader = fileReaderFactory.getJsonFileReader(file);
+        FileObjReaderFactory fileObjReaderFactory = new FileObjReaderFactory();
+        FileObjReader<SeatBidResponse> fileObjReader = fileObjReaderFactory.getJsonFileReader(file);
 
-        return new BidJsonFileReader(jsonFileReader);
+        return new BidJsonFileReader(fileObjReader);
     }
 
     public BidReader getBidReader(File file) {
-        FileReaderFactory fileReaderFactory = new FileReaderFactory();
-        JsonFileReader<SeatBidResponse> jsonFileReader = fileReaderFactory.getJsonFileReader(file);
+        FileObjReaderFactory fileObjReaderFactory = new FileObjReaderFactory();
+        FileObjReader<SeatBidResponse> fileObjReader = fileObjReaderFactory.getJsonFileReader(file);
 
-        return new BidJsonFileReader(jsonFileReader);
+        return new BidJsonFileReader(fileObjReader);
     }
 }

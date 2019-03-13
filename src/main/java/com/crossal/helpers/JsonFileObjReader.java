@@ -1,19 +1,18 @@
 package com.crossal.helpers;
 
-import com.crossal.bid.model.SeatBidResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.nio.file.Files;
 
-public class JsonFileReader<T> {
+public class JsonFileObjReader<T> implements FileObjReader<T> {
 
-    private static final Logger logger = Logger.getLogger(JsonFileReader.class);
+    private static final Logger logger = Logger.getLogger(JsonFileObjReader.class);
 
     private File file;
 
-    public JsonFileReader(File file) {
+    public JsonFileObjReader(File file) {
         this.file = file;
     }
 
