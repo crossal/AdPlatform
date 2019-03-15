@@ -12,7 +12,7 @@ import java.io.File;
 public class AdServiceImpl implements AdService {
 
     @Autowired
-    BidService bidService;
+    private BidService bidService;
 
     @Override
     public Ad getAd() {
