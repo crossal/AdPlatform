@@ -32,6 +32,8 @@ public class BidServiceImpl implements BidService {
         List<Bid> bids = seatBidResponse.getSeatBid().stream().flatMap(b -> b.getBids().stream()).collect(Collectors.toList());
         Bid highestBid = bids.stream().max(Comparator.comparing(b -> b.getPrice())).orElse(null);
 
+        System.out.println("Highest bidder - id " + highestBid.getId() + ", price " + highestBid.getPrice());
+
         return highestBid;
     }
 
