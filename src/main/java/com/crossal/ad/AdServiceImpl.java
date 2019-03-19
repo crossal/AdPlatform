@@ -1,7 +1,6 @@
 package com.crossal.ad;
 
 import com.crossal.ad.model.Ad;
-import com.crossal.bid.BidServiceImpl;
 import com.crossal.bid.model.Bid;
 import com.crossal.bid.BidService;
 import com.crossal.helpers.FileWriter;
